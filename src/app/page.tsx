@@ -1,10 +1,9 @@
-import Link from "next/link";
-import BackgroundPaths from "~/components/kokonutui/background-paths";
+import Hero from "~/components/sections/Hero";
 
 export default function HomePage() {
     return (
         <main>
-            <BackgroundPaths />
+            <Hero />
         </main>
     );
 }
