@@ -1,11 +1,12 @@
-import Link from "next/link";
+import Hero from "~/components/sections/Hero";
 
 export default function HomePage() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-                <h1 className="text-6xl font-bold">GeFighting</h1>
-            </div>
+        <main>
+            <Hero />
+            <div className="container h-96 mx-auto px-4 md:px-6 py-16 text-center"> </div>
+            <div className="container h-96 mx-auto px-4 md:px-6 py-16 text-center"> </div>
+            <div className="container h-96 mx-auto px-4 md:px-6 py-16 text-center"> </div>
         </main>
     );
 }
