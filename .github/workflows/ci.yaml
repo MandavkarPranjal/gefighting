@@ -29,6 +29,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Dependencies
+        run: npm install -g pnpm
+
       - name: Format
         run: pnpm run format:check
 
