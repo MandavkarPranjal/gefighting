@@ -30,6 +30,18 @@ type ViewProps = {
     setView: (view: string) => void;
 };
 
+type SafetyTip = {
+    icon: React.ReactNode;
+    text: string;
+};
+
+type SafetyViewProps = ViewProps & {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+    tips: SafetyTip[];
+};
+
 export function Button({ children, onClick }: ButtonProps) {
     return (
         <button
@@ -72,28 +84,22 @@ export function Header({ icon, title, description }: HeaderProps) {
     );
 }
 
-export function Phrase({ setView }: ViewProps) {
+function SafetyView({ setView, icon, title, description, tips }: SafetyViewProps) {
     return (
         <div>
             <div className="px-2">
                 <Header
-                    icon={<RecoveryPhraseIcon />}
-                    title="Secret Recovery Phrase"
-                    description="Your Secret Recovery Phrase is the key used to back up your wallet. Keep it secret at all times."
+                    icon={icon}
+                    title={title}
+                    description={description}
                 />
                 <ul className="mt-6 space-y-4 border-t border-[#F5F5F5] pt-6">
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <ShieldIcon />
-                        Keep your Secret Phrase safe
-                    </li>
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <PassIcon />
-                        Don’t share it with anyone else
-                    </li>
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <BannedIcon />
-                        If you lose it, we can’t recover it
-                    </li>
+                    {tips.map((tip, index) => (
+                        <li key={index} className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
+                            {tip.icon}
+                            {tip.text}
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className="mt-7 flex gap-4">
@@ -115,47 +121,35 @@ export function Phrase({ setView }: ViewProps) {
     );
 }
 
+export function Phrase({ setView }: ViewProps) {
+    return (
+        <SafetyView
+            setView={setView}
+            icon={<RecoveryPhraseIcon />}
+            title="Secret Recovery Phrase"
+            description="Your Secret Recovery Phrase is the key used to back up your wallet. Keep it secret at all times."
+            tips={[
+                { icon: <ShieldIcon />, text: "Keep your Secret Phrase safe" },
+                { icon: <PassIcon />, text: "Don't share it with anyone else" },
+                { icon: <BannedIcon />, text: "If you lose it, we can't recover it" }
+            ]}
+        />
+    );
+}
+
 export function Key({ setView }: ViewProps) {
     return (
-        <div>
-            <div className="px-2">
-                <Header
-                    icon={<RecoveryPhraseIcon />}
-                    title="Private Key"
-                    description="Your Private Key is the key used to back up your wallet. Keep it
-			  secret and secure at all times."
-                />
-                <ul className="mt-6 space-y-4 border-t border-[#F5F5F5] pt-6">
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <ShieldIcon />
-                        Keep your private key safe
-                    </li>
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <PassIcon />
-                        Don’t share it with anyone else
-                    </li>
-                    <li className="flex items-center gap-3 text-[15px] font-semibold text-[#999999] md:font-medium">
-                        <BannedIcon />
-                        If you lose it, we can’t recover it
-                    </li>
-                </ul>
-            </div>
-            <div className="mt-7 flex gap-4">
-                <SecondaryButton
-                    onClick={() => setView("default")}
-                    className="bg-[#F0F2F4] text-[#222222]"
-                >
-                    Cancel
-                </SecondaryButton>
-                <SecondaryButton
-                    onClick={() => setView("default")}
-                    className="bg-[#4DAFFF] text-[#FFFFFF]"
-                >
-                    <FaceIDIcon />
-                    Reveal
-                </SecondaryButton>
-            </div>
-        </div>
+        <SafetyView
+            setView={setView}
+            icon={<RecoveryPhraseIcon />}
+            title="Private Key"
+            description="Your Private Key is the key used to back up your wallet. Keep it secret and secure at all times."
+            tips={[
+                { icon: <ShieldIcon />, text: "Keep your private key safe" },
+                { icon: <PassIcon />, text: "Don't share it with anyone else" },
+                { icon: <BannedIcon />, text: "If you lose it, we can't recover it" }
+            ]}
+        />
     );
 }
 
