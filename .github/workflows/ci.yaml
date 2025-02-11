@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies
-        run: npm install -g pnpm
+        run: npm install -g pnpm && pnpm install
 
       - name: Format
         run: pnpm run format:check
