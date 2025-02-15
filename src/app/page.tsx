@@ -1,3 +1,5 @@
+
+import Link from "next/link";
 import Hero from "~/components/sections/Hero";
 
 export default function HomePage() {
@@ -8,5 +10,8 @@ export default function HomePage() {
             <div className="container h-96 mx-auto px-4 md:px-6 py-16 text-center"> </div>
             <div className="container h-96 mx-auto px-4 md:px-6 py-16 text-center"> </div>
         </main>
+
+       
+        
     );
 }
