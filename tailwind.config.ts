@@ -21,6 +21,7 @@ export default {
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 geblue: "#1b478e",
+                geconblue: "#7fb4e7",
                 gered: "#e91e27",
                 card: {
                     DEFAULT: 'hsl(var(--card))',

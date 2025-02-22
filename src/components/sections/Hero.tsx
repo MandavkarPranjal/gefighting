@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "~/components/ui/button";
+import Balatro from "../Balatro/Balatro";
 
 export default function Hero({
     title = "Global Esports",
@@ -12,32 +13,20 @@ export default function Hero({
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
-            <motion.div
+            <div
                 className="absolute top-0 left-0 w-full h-full z-0"
-                style={{
-                    background:
-                        "linear-gradient(45deg, #1b478e, #2f5b9e, #4471af, #5a87c0, #709dcf, #87b5df, #9fcdf0, #b8e6ff, #f79c9e, #e58382, #d36a67, #c1524f, #af3a38, #9d2424, #8c0e11, #7b0000)",
-                    backgroundSize: "200% 200%",
-                }}
-                animate={{
-                    backgroundPosition: [
-                        "0% 50%",
-                        "50% 0%",
-                        "100% 50%",
-                        "50% 100%",
-                        "0% 50%",
-                    ],
-                }}
-                transition={{
-                    duration: 15,
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
-            />
-
+            >
+                <Balatro
+                    isRotate={false}
+                    mouseInteraction={false}
+                    pixelFilter={2000}
+                    color1="#1b478e"
+                    color2="#e91e27"
+                />
+            </div>
             <div className="bg-hero_overlay absolute w-full h-full z-10 bg-primary/[0.42]" />
 
-            <div className="hero-container relative z-10 container mx-auto px-4 md:px-6 text-center text-geblue">
+            <div className="hero-container relative z-10 container mx-auto px-4 md:px-6 text-center text-geconblue font-bold">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
